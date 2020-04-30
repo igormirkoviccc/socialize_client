@@ -10,11 +10,12 @@ export default function LogInScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    console.log(state);
 
 
   return(
       <View style={styles.container}>
-        <Text style={styles.labels}>Email</Text>
+          <Text style={styles.labels}>Email</Text>
         <TextInput
             onChangeText={setEmail}
             style={styles.textInput}/>
@@ -31,6 +32,7 @@ export default function LogInScreen() {
             type='outline'
             onPress={() => LogIn({email, password})}
             title='Log in'/>
+          {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
       </View>
   );
 }
@@ -42,7 +44,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        paddingTop: 50
     },
     textInput: {
         marginBottom: 20,
@@ -61,5 +64,8 @@ const styles = StyleSheet.create({
         width: 70,
         height: 50,
         backgroundColor: 'white',
+    },
+    error: {
+        color: 'red'
     }
 })
