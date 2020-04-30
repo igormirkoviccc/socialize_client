@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Text, TextInput, View, StyleSheet, Alert} from 'react-native';
-import { Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
+import { Context as AuthContext } from "../context/AuthContext";
+
 
 
 export default function LogInScreen() {
+    const {state, LogIn} = useContext(AuthContext)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+
   return(
       <View style={styles.container}>
         <Text style={styles.labels}>Email</Text>
-        <TextInput style={styles.textInput}/>
+        <TextInput
+            onChangeText={setEmail}
+            style={styles.textInput}/>
         <Text style={styles.labels}>Password</Text>
-        <TextInput secureTextEntry={true} style={styles.textInput}/>
+        <TextInput
+            onChangeText={setPassword}
+            secureTextEntry={true}
+            style={styles.textInput}/>
         <Button
             titleStyle={{
                 fontSize: 12,
             }}
             buttonStyle={styles.button}
             type='outline'
-            onPress={() => Alert.alert('Hiello')}
+            onPress={() => LogIn({email, password})}
             title='Log in'/>
       </View>
   );
