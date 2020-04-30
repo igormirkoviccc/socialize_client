@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { Text, TextInput, View, StyleSheet, Alert, AsyncStorage} from 'react-native';
+import Post from '../components/Post'
 
 import BottomTabNavigator from "../navigation/BottomTabNavigator";
 import {Context as AuthContext} from "../context/AuthContext";
@@ -25,11 +26,17 @@ export default function NewsFeedScreen() {
             .then(res => setPosts(res))
     }
 
-    console.log(posts);
+    const renderContent = () =>{
+        if(posts){
+            return posts.map((post, index) =>{
+                return <Post key={"_" + index} post={post}/>
+            })
+        }
+    }
 
     return(
         <View style={styles.container}>
-            <Text style={styles.labels}>Email</Text>
+            {renderContent()}
         </View>
     );
 }
