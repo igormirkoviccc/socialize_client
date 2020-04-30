@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import LogInScreen from "../screens/LogInScreen";
-import UsersScreen from "../screens/UsersScreen";
+import NewsFeedScreen from "../screens/NewsFeedScreen";
 import {useContext} from "react";
 import {Context as AuthContext} from "../context/AuthContext";
 import LinksScreen from "../screens/LinksScreen";
@@ -29,8 +29,8 @@ const AuthStackScreen = () => (
 
 const HomeStackScreen = () => (
     <HomeStack.Navigator>
-        <HomeStack.Screen name="Home" component={HomeScreen} />
-        <HomeStack.Screen name="Users" component={UsersScreen} />
+        <HomeStack.Screen name="Profile" component={HomeScreen} />
+        <HomeStack.Screen name="News feed" component={NewsFeedScreen} />
         <HomeStack.Screen name="Links" component={LinksScreen}/>
     </HomeStack.Navigator>
 );
@@ -38,15 +38,15 @@ const HomeStackScreen = () => (
 const LinkStackScreen = () => (
     <LinkStack.Navigator>
         <LinkStack.Screen name="Links" component={LinksScreen}/>
-        <LinkStack.Screen name="Users" component={UsersScreen} />
-        <LinkStack.Screen name="Home" component={HomeScreen} />
+        <LinkStack.Screen name="News feed" component={NewsFeedScreen} />
+        <LinkStack.Screen name="Profile" component={HomeScreen} />
     </LinkStack.Navigator>
 );
 
-const UserStackScreen = () => (
+const NewsFeedStackScreen = () => (
     <UserStack.Navigator>
-        <UserStack.Screen name="Users" component={UsersScreen} />
-        <UserStack.Screen name="Home" component={HomeScreen} />
+        <UserStack.Screen name="News feed" component={NewsFeedScreen} />
+        <UserStack.Screen name="Profile" component={HomeScreen} />
         <UserStack.Screen name="Links" component={LinksScreen}/>
     </UserStack.Navigator>
 );
@@ -55,12 +55,12 @@ const TabsScreen = () => (
     <Tabs.Navigator>
         <Tabs.Screen name="Home" component={HomeStackScreen} />
         <Tabs.Screen name="Link" component={LinkStackScreen} />
-        <Tabs.Screen name="User" component={UserStackScreen} />
+        <Tabs.Screen name="News feed" component={NewsFeedStackScreen} />
     </Tabs.Navigator>
 );
 
 export default function RootStackNavigator() {
-    const {state, LogIn} = useContext(AuthContext)
+    const {state} = useContext(AuthContext)
 
     return (
         <NavigationContainer>
@@ -68,7 +68,7 @@ export default function RootStackNavigator() {
                 {!state.token &&
                 <RootStack.Screen name='Login' component={AuthStackScreen} />
                 }
-                <RootStack.Screen name='Users' component={TabsScreen} />
+                <RootStack.Screen name='News feed' component={TabsScreen} />
             </RootStack.Navigator>
         </NavigationContainer>
     )

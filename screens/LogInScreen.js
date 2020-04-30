@@ -11,7 +11,7 @@ export default function LogInScreen({navigation}) {
     const [password, setPassword] = useState('');
 
     if(state.token){
-        navigation.navigate('Users')
+        navigation.navigate('News feed')
     }
 
   return(
