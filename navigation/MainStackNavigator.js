@@ -29,17 +29,17 @@ const AuthStackScreen = () => (
 
 const HomeStackScreen = () => (
     <HomeStack.Navigator>
-        <HomeStack.Screen name="Users" component={UsersScreen} />
         <HomeStack.Screen name="Home" component={HomeScreen} />
+        <HomeStack.Screen name="Users" component={UsersScreen} />
         <HomeStack.Screen name="Links" component={LinksScreen}/>
     </HomeStack.Navigator>
 );
 
 const LinkStackScreen = () => (
     <LinkStack.Navigator>
+        <LinkStack.Screen name="Links" component={LinksScreen}/>
         <LinkStack.Screen name="Users" component={UsersScreen} />
         <LinkStack.Screen name="Home" component={HomeScreen} />
-        <LinkStack.Screen name="Links" component={LinksScreen}/>
     </LinkStack.Navigator>
 );
 
@@ -58,30 +58,6 @@ const TabsScreen = () => (
         <Tabs.Screen name="User" component={UserStackScreen} />
     </Tabs.Navigator>
 );
-
-
-export const RootStackScreen = ({ login }) => (
-    <RootStack.Navigator headerMode="none">
-        {login ? (
-            <RootStack.Screen
-                name="App"
-                component={TabsScreen}
-                options={{
-                    animationEnabled: false,
-                }}
-            />
-        ) : (
-            <RootStack.Screen
-                name="Auth"
-                component={AuthStackScreen}
-                options={{
-                    animationEnabled: false,
-                }}
-            />
-        )}
-    </RootStack.Navigator>
-);
-
 
 export default function RootStackNavigator() {
     const {state, LogIn} = useContext(AuthContext)
