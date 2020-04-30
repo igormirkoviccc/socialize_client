@@ -5,13 +5,14 @@ import { Context as AuthContext } from "../context/AuthContext";
 
 
 
-export default function LogInScreen() {
+export default function LogInScreen({navigation}) {
     const {state, LogIn} = useContext(AuthContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    console.log(state);
-
+    if(state.token){
+        navigation.navigate('Users')
+    }
 
   return(
       <View style={styles.container}>
@@ -32,7 +33,7 @@ export default function LogInScreen() {
             type='outline'
             onPress={() => LogIn({email, password})}
             title='Log in'/>
-          {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
+            {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
       </View>
   );
 }
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     error: {
-        color: 'red'
+        color: 'red',
+        fontSize: 10
     }
 })
