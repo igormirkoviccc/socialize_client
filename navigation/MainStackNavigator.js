@@ -61,7 +61,6 @@ const TabsScreen = () => (
 
 export default function RootStackNavigator() {
     const {state} = useContext(AuthContext)
-
     return (
         <NavigationContainer>
             <RootStack.Navigator headerMode="none">
