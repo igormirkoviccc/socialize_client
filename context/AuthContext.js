@@ -40,5 +40,5 @@ const LogIn = ( dispatch ) => ({ email, password }) => {
 export const { Provider, Context } = DataContext(
     AuthReducer,
     { LogIn },
-    { token: null, errorMessage: '' }
+    { token: AsyncStorage.getItem('auth_token'), errorMessage: '' }
 )

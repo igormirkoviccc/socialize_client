@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TextInput, View, StyleSheet, Alert} from 'react-native';
+import BottomTabNavigator from "../navigation/BottomTabNavigator";
 
 
 export default function UsersScreen() {
