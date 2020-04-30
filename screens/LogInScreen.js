@@ -34,6 +34,11 @@ export default function LogInScreen({navigation}) {
             onPress={() => LogIn({email, password})}
             title='Log in'/>
             {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
+          <Text
+              onPress={() => navigation.navigate('Users')}
+              style={{color: '#2089DC', marginTop: 40}}>
+              If you don't have account, please sign up
+          </Text>
       </View>
   );
 }
