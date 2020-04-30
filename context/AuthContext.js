@@ -6,7 +6,7 @@ const AuthReducer = (state, action) =>{
         case 'error':
             return {...state, errorMessage: action.payload}
         case 'login':
-            return {errorMessage: '', token: action.payload}
+            return {errorMessage: '', isAuth: true}
         default:
             return state;
     }
@@ -40,5 +40,5 @@ const LogIn = ( dispatch ) => ({ email, password }) => {
 export const { Provider, Context } = DataContext(
     AuthReducer,
     { LogIn },
-    { token: AsyncStorage.getItem('auth_token'), errorMessage: '' }
+    { isAuth: false, errorMessage: '' }
 )

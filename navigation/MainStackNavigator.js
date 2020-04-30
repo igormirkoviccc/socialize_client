@@ -8,6 +8,7 @@ import {useContext} from "react";
 import {Context as AuthContext} from "../context/AuthContext";
 import LinksScreen from "../screens/LinksScreen";
 import HomeScreen from "../screens/HomeScreen";
+import SignUpScreen from "../screens/SignUpScreen";
 
 const RootStack = createStackNavigator();
 
@@ -69,7 +70,7 @@ export default function RootStackNavigator() {
     return (
         <NavigationContainer>
             <RootStack.Navigator headerMode="none">
-                {!state.token &&
+                {!state.isAuth &&
                 <RootStack.Screen name='Login' component={AuthStackScreen} />
                 }
                 <RootStack.Screen name='News feed' component={TabsScreen} />
