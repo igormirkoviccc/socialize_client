@@ -23,6 +23,12 @@ const LinkStack = createStackNavigator();
 const UserStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
+const LogOut = async () =>{
+    await AsyncStorage.removeItem('auth_token');
+    await AsyncStorage.removeItem('id');
+}
+
+
 const AuthStackScreen = () => (
     <AuthStack.Navigator>
         <AuthStack.Screen
@@ -44,17 +50,19 @@ const HomeStackScreen = ({navigation}) => {
             <HomeStack.Screen
                 name="Profile"
                 component={HomeScreen}
+                options={{
+                    headerRight: () => (
+                        <Button
+                            onPress={() => LogOut()}
+                            title="LogOut"
+                            color="#000"
+                            buttonStyle={{height: 30, marginRight: 10}}
+                            titleStyle={{fontSize: 12}}
+                        />
+                    ),
+                }}
             />
             <HomeStack.Screen name="News feed"
-                              options={{
-                                  headerRight: () => (
-                                      <Button
-                                          onPress={() => navigation.navigate('New Post')}
-                                          title="Info"
-                                          color="#fff"
-                                      />
-                                  ),
-                              }}
                               component={NewsFeedScreen} />
             <HomeStack.Screen name="Links" component={LinksScreen}/>
             <HomeStack.Screen name="New Post" component={NewPostScreen}/>
