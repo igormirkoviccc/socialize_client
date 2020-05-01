@@ -1,32 +1,34 @@
-import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState, useContext } from "react";
+import { View, StyleSheet, TextInput } from "react-native";
+import { Button, Text } from "react-native-elements";
+import { Context as AuthContext } from "../context/AuthContext";
 
 export default function SignUpScreen() {
+  const {state, SignUp} = useContext(AuthContext)
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <View style={styles.container}>
-       <Text>Name:</Text>
-      <TextInput style={styles.inputField} />
+      <Text>Name:</Text>
+      <TextInput style={styles.inputField} onChangeText={setName} />
       <Text>Age:</Text>
-      <TextInput style={styles.inputField} />
+      <TextInput style={styles.inputField} onChangeText={setAge} />
       <Text>Gender:</Text>
-      <TextInput style={styles.inputField} />
+      <TextInput style={styles.inputField} onChangeText={setGender} />
       <Text>Username:</Text>
-      <TextInput style={styles.inputField} />
+      <TextInput style={styles.inputField} onChangeText={setUsername} />
       <Text>Email:</Text>
-      <TextInput style={styles.inputField} />
+      <TextInput style={styles.inputField} onChangeText={setEmail} />
       <Text>Password:</Text>
-      <TextInput style={styles.inputField} />
-      <TouchableOpacity color = 'white'>
-        <Text> Sign up </Text> 
-        {/* zasto ovde ne radi style za Text */}
-      </TouchableOpacity>
+      <TextInput style={styles.inputField} onChangeText={setPassword} />
+      <Button type="outline" title="Sign up" titleStyle={styles.buttonSignUp} onPress={() => SignUp({name, age, gender, username, email, password})}/>
+
+      {/* zasto ovde ne radi style za Text */}
     </View>
   );
 }
@@ -45,9 +47,9 @@ const styles = StyleSheet.create({
     width: "60%",
     backgroundColor: "#ffe6e6",
     margin: 10,
+    borderRadius: 5,
   },
   buttonSignUp: {
-    margin: 10,
-    color: 'red'
+    color: "#6B2D5C",
   },
 });
