@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {View, Text, StyleSheet} from "react-native";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 
 export default function Post(props) {
@@ -14,14 +16,14 @@ export default function Post(props) {
 
     return (
         <View style={styles.container}>
-            <View>
+            <View style={{width: 150}}>
             <Text style={{color: 'black', fontSize: 12}}>{props.post.user.name}</Text>
             <Text style={{fontSize: 10, color: 'gray'}}>{formatDate(props.post.createdAt)}</Text>
             <Text style={{fontSize: 18, color: 'black', marginBottom: 2}}>{props.post.text}</Text>
-            <Text style={{fontSize: 12, color: 'black'}}>Likes: {props.post.likes}</Text>
+            <Text style={{fontSize: 10, color: 'black'}}>{props.post.likes} hearts</Text>
             </View>
-            <View>
-                <Text>Heart</Text>
+            <View style={{width: 20}}>
+                <Icon name="heart" size={20} color="#900" />
             </View>
         </View>
     );
@@ -32,6 +34,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F1F2EB',
         borderRadius: 5,
         marginBottom: 10,
-        padding: 5
+        padding: 5,
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 })
