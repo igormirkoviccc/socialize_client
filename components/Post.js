@@ -61,15 +61,17 @@ export default function Post(props) {
 
     return (
         <View style={styles.container}>
-            <View style={{width: 150}}>
+            <View style={{width: !props.self ? 150 : 220}}>
             <Text style={{color: 'black', fontSize: 12}}>{props.post.user.name}</Text>
             <Text style={{fontSize: 10, color: 'gray'}}>{formatDate(props.post.createdAt)}</Text>
             <Text style={{fontSize: 18, color: 'black', marginBottom: 2}}>{props.post.text}</Text>
             <Text style={{fontSize: 10, color: 'black'}}>{!post ? props.post.likes.length : post.likes.length} hearts</Text>
             </View>
+            {!props.self &&
             <View style={{width: 20}}>
                 {isLiked || CheckIfExistsInLiked() ? <Icon onPress={() => DislikePost()} name="heart" size={20} color="#900" />: <Icon onPress={() => LikePost()} name="heart-outline" size={20} color="#900" />}
             </View>
+            }
         </View>
     );
 }

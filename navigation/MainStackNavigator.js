@@ -10,7 +10,7 @@ import { Button } from 'react-native-elements';
 
 import {Context as AuthContext} from "../context/AuthContext";
 import LinksScreen from "../screens/LinksScreen";
-import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import {navigationRef} from "./RootNavigation";
 import NewPostScreen from "../screens/NewPostScreen";
@@ -18,9 +18,9 @@ import NewPostScreen from "../screens/NewPostScreen";
 
 const RootStack = createStackNavigator();
 const AuthStack = createStackNavigator();
-const HomeStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 const LinkStack = createStackNavigator();
-const UserStack = createStackNavigator();
+const NewsFeedStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 const LogOut = async () =>{
@@ -44,12 +44,12 @@ const AuthStackScreen = () => (
     </AuthStack.Navigator>
 );
 
-const HomeStackScreen = ({navigation}) => {
+const ProfileStackScreen = ({navigation}) => {
     return (
-        <HomeStack.Navigator>
-            <HomeStack.Screen
+        <ProfileStack.Navigator>
+            <ProfileStack.Screen
                 name="Profile"
-                component={HomeScreen}
+                component={ProfileScreen}
                 options={{
                     headerRight: () => (
                         <Button
@@ -62,12 +62,12 @@ const HomeStackScreen = ({navigation}) => {
                     ),
                 }}
             />
-            <HomeStack.Screen name="News feed"
+            <ProfileStack.Screen name="News feed"
                               component={NewsFeedScreen} />
-            <HomeStack.Screen name="Links" component={LinksScreen}/>
-            <HomeStack.Screen name="New Post" component={NewPostScreen}/>
+            <ProfileStack.Screen name="Links" component={LinksScreen}/>
+            <ProfileStack.Screen name="New Post" component={NewPostScreen}/>
 
-        </HomeStack.Navigator>
+        </ProfileStack.Navigator>
     );
 }
 
@@ -75,13 +75,13 @@ const LinkStackScreen = () => (
     <LinkStack.Navigator>
         <LinkStack.Screen name="Links" component={LinksScreen}/>
         <LinkStack.Screen name="News feed" component={NewsFeedScreen} />
-        <LinkStack.Screen name="Profile" component={HomeScreen} />
+        <LinkStack.Screen name="Profile" component={ProfileScreen} />
     </LinkStack.Navigator>
 );
 
 const NewsFeedStackScreen = ({navigation}) => (
-    <UserStack.Navigator>
-        <UserStack.Screen name="News feed"
+    <NewsFeedStack.Navigator>
+        <NewsFeedStack.Screen name="News feed"
                           options={{
                               headerRight: () => (
                                   <Button
@@ -94,16 +94,16 @@ const NewsFeedStackScreen = ({navigation}) => (
                                   />
                               ),
                           }} component={NewsFeedScreen} />
-        <UserStack.Screen name="Profile" component={HomeScreen} />
-        <UserStack.Screen name="New Post" component={NewPostScreen} />
-        <UserStack.Screen name="Links" component={LinksScreen}/>
-    </UserStack.Navigator>
+        <NewsFeedStack.Screen name="Profile" component={ProfileScreen} />
+        <NewsFeedStack.Screen name="New Post" component={NewPostScreen} />
+        <NewsFeedStack.Screen name="Links" component={LinksScreen}/>
+    </NewsFeedStack.Navigator>
 );
 
 const TabsScreen = () => (
     <Tabs.Navigator>
         <Tabs.Screen name="News feed" component={NewsFeedStackScreen} />
-        <Tabs.Screen name="Profile" component={HomeStackScreen} />
+        <Tabs.Screen name="Profile" component={ProfileScreen} />
         <Tabs.Screen name="Chat" component={LinkStackScreen} />
     </Tabs.Navigator>
 );
