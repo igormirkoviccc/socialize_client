@@ -6,11 +6,14 @@ import LogInScreen from "../screens/LogInScreen";
 import NewsFeedScreen from "../screens/NewsFeedScreen";
 import {useContext, useState, useEffect} from "react";
 import {AsyncStorage, Text, View} from "react-native";
+import { Button } from 'react-native-elements';
+
 import {Context as AuthContext} from "../context/AuthContext";
 import LinksScreen from "../screens/LinksScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import {navigationRef} from "./RootNavigation";
+import NewPostScreen from "../screens/NewPostScreen";
 
 
 const RootStack = createStackNavigator();
@@ -35,15 +38,27 @@ const AuthStackScreen = () => (
     </AuthStack.Navigator>
 );
 
-const HomeStackScreen = () => {
+const HomeStackScreen = ({navigation}) => {
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen
                 name="Profile"
                 component={HomeScreen}
             />
-            <HomeStack.Screen name="News feed" component={NewsFeedScreen} />
+            <HomeStack.Screen name="News feed"
+                              options={{
+                                  headerRight: () => (
+                                      <Button
+                                          onPress={() => navigation.navigate('New Post')}
+                                          title="Info"
+                                          color="#fff"
+                                      />
+                                  ),
+                              }}
+                              component={NewsFeedScreen} />
             <HomeStack.Screen name="Links" component={LinksScreen}/>
+            <HomeStack.Screen name="New Post" component={NewPostScreen}/>
+
         </HomeStack.Navigator>
     );
 }
@@ -56,10 +71,23 @@ const LinkStackScreen = () => (
     </LinkStack.Navigator>
 );
 
-const NewsFeedStackScreen = () => (
+const NewsFeedStackScreen = ({navigation}) => (
     <UserStack.Navigator>
-        <UserStack.Screen name="News feed" component={NewsFeedScreen} />
+        <UserStack.Screen name="News feed"
+                          options={{
+                              headerRight: () => (
+                                  <Button
+                                      onPress={() => navigation.navigate('New Post')}
+                                      type='outline'
+                                      title="Add post"
+                                      color="#000"
+                                      buttonStyle={{height: 30, marginRight: 10}}
+                                      titleStyle={{fontSize: 12}}
+                                  />
+                              ),
+                          }} component={NewsFeedScreen} />
         <UserStack.Screen name="Profile" component={HomeScreen} />
+        <UserStack.Screen name="New Post" component={NewPostScreen} />
         <UserStack.Screen name="Links" component={LinksScreen}/>
     </UserStack.Navigator>
 );

@@ -13,22 +13,25 @@ export default function Post(props) {
 
 
     return (
-        <View>
+        <View style={styles.container}>
+            <View>
             <Text style={{color: 'black', fontSize: 12}}>{props.post.user.name}</Text>
-            <Text style={{fontSize: 10, color: 'gray', marginBottom: 5}}>{formatDate(props.post.createdAt)}</Text>
+            <Text style={{fontSize: 10, color: 'gray'}}>{formatDate(props.post.createdAt)}</Text>
             <Text style={{fontSize: 18, color: 'black', marginBottom: 2}}>{props.post.text}</Text>
-            <Text style={{fontSize: 12, color: 'black', marginBottom: 20}}>Likes: {props.post.likes}</Text>
+            <Text style={{fontSize: 12, color: 'black'}}>Likes: {props.post.likes}</Text>
+            </View>
+            <View>
+                <Text>Heart</Text>
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        paddingTop: 50
+        backgroundColor: '#F1F2EB',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 5
     }
 })

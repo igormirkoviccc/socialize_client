@@ -1,19 +1,20 @@
 import React, {useContext, useEffect, useState} from "react";
-import { ScrollView , StyleSheet, AsyncStorage} from 'react-native';
+import {AsyncStorage, ScrollView, StyleSheet} from 'react-native';
 import Post from '../components/Post'
-
-import BottomTabNavigator from "../navigation/BottomTabNavigator";
 import {Context as AuthContext} from "../context/AuthContext";
 
 
-export default function NewsFeedScreen() {
+export default function NewsFeedScreen({navigation}) {
     const {state, LogIn} = useContext(AuthContext)
     const [posts, setPosts] = useState([]);
 
 
     useEffect( () =>{
-        fetchPosts();
-    }, [])
+        return navigation.addListener('focus', () => {
+            fetchPosts();
+        });
+
+    }, [navigation])
 
     const fetchPosts = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
@@ -23,7 +24,7 @@ export default function NewsFeedScreen() {
             }
         })
             .then(res => res.json())
-            .then(res => setPosts(res))
+            .then(res => setPosts(res.reverse()))
     }
 
     const renderContent = () =>{
@@ -47,6 +48,5 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: 'white',
         padding: 30
-
     }
 })
