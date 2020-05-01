@@ -4,7 +4,8 @@ import RootStackNavigator from "./navigation/MainStackNavigator";
 
 
 
-export default function App(){
+export default function App({navigation}){
+
     return (
         <AuthProvider>
             <RootStackNavigator/>

@@ -4,14 +4,16 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import LogInScreen from "../screens/LogInScreen";
 import NewsFeedScreen from "../screens/NewsFeedScreen";
-import {useContext} from "react";
+import {useContext, useState, useEffect} from "react";
+import {AsyncStorage, Text, View} from "react-native";
 import {Context as AuthContext} from "../context/AuthContext";
 import LinksScreen from "../screens/LinksScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+import {navigationRef} from "./RootNavigation";
+
 
 const RootStack = createStackNavigator();
-
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const LinkStack = createStackNavigator();
@@ -33,13 +35,18 @@ const AuthStackScreen = () => (
     </AuthStack.Navigator>
 );
 
-const HomeStackScreen = () => (
-    <HomeStack.Navigator>
-        <HomeStack.Screen name="Profile" component={HomeScreen} />
-        <HomeStack.Screen name="News feed" component={NewsFeedScreen} />
-        <HomeStack.Screen name="Links" component={LinksScreen}/>
-    </HomeStack.Navigator>
-);
+const HomeStackScreen = () => {
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen
+                name="Profile"
+                component={HomeScreen}
+            />
+            <HomeStack.Screen name="News feed" component={NewsFeedScreen} />
+            <HomeStack.Screen name="Links" component={LinksScreen}/>
+        </HomeStack.Navigator>
+    );
+}
 
 const LinkStackScreen = () => (
     <LinkStack.Navigator>
@@ -66,12 +73,28 @@ const TabsScreen = () => (
 );
 
 export default function RootStackNavigator() {
-    const {state} = useContext(AuthContext)
+    const { state } = useContext(AuthContext)
+    const [isLoading, setLoading] = useState(true);
+
+    useEffect(() => {
+        AsyncStorage.getItem('auth_token').then((token) => {
+            state.isAuth = !!token;
+            setLoading(false);
+        });
+    }, [])
+
+    if(isLoading){
+        return <View>
+            <Text>Loading...</Text>
+        </View>
+    }
+
+
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             <RootStack.Navigator headerMode="none">
                 {!state.isAuth &&
-                <RootStack.Screen name='Login' component={AuthStackScreen} />
+                <RootStack.Screen name='Auth' component={AuthStackScreen} />
                 }
                 <RootStack.Screen name='News feed' component={TabsScreen} />
             </RootStack.Navigator>

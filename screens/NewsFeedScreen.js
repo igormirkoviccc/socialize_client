@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import { Text, TextInput, View, StyleSheet, Alert, AsyncStorage} from 'react-native';
+import { ScrollView , StyleSheet, AsyncStorage} from 'react-native';
 import Post from '../components/Post'
 
 import BottomTabNavigator from "../navigation/BottomTabNavigator";
@@ -35,9 +35,9 @@ export default function NewsFeedScreen() {
     }
 
     return(
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             {renderContent()}
-        </View>
+        </ScrollView>
     );
 }
 
@@ -46,11 +46,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    labels: {
-        marginBottom: 5
+        padding: 30
+
     }
 })

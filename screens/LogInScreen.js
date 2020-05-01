@@ -10,8 +10,8 @@ export default function LogInScreen({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    if(state.token){
-        navigation.navigate('Users')
+    if(state.isAuth){
+        navigation.navigate('News feed')
     }
 
   return(
