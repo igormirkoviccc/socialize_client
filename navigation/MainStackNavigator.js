@@ -104,11 +104,20 @@ export default function RootStackNavigator() {
     const { state } = useContext(AuthContext)
     const [isLoading, setLoading] = useState(true);
 
-    useEffect(() => {
-        AsyncStorage.getItem('auth_token').then((token) => {
+    const GetFromAsyncStorage = async () =>{
+        await AsyncStorage.getItem('auth_token').then((token) => {
             state.isAuth = !!token;
-            setLoading(false);
         });
+        await AsyncStorage.getItem('id').then((id) => {
+            state.user = id;
+        });
+    }
+
+    useEffect(async () => {
+         await GetFromAsyncStorage();
+         setLoading(false);
+         console.log(state.user);
+
     }, [])
 
     if(isLoading){

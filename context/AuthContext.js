@@ -22,13 +22,15 @@ const LogIn = ( dispatch ) => ({ email, password }) => {
             })
                 .then(res => {
                     if(res.ok){
-                        return res.text()
+                        return res.json()
                     }else{
                         dispatch({type: 'error', payload: 'Login error'})
                     }
                 })
                 .then(async (res) => {
-                    await AsyncStorage.setItem('auth_token', res.toString());
+                    console.log(res);
+                    await AsyncStorage.setItem('auth_token', res.token.toString());
+                    await AsyncStorage.setItem('id', res.id.toString());
                     dispatch({type: 'login', payload: res.toString()})
                 })
                 .catch(e => {
@@ -40,5 +42,5 @@ const LogIn = ( dispatch ) => ({ email, password }) => {
 export const { Provider, Context } = DataContext(
     AuthReducer,
     { LogIn },
-    { isAuth: false, errorMessage: '' }
+    { isAuth: false, errorMessage: '', user: null}
 )
