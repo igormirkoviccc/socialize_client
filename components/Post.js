@@ -1,8 +1,16 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, AsyncStorage} from "react-native";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useContext, useState} from "react";
+import {Context as AuthContext} from "../context/AuthContext";
+
+
 
 
 export default function Post(props) {
+    const [isLiked, setLiked] = useState(false)
+    const [post, setPost] = useState();
+    const { state } = useContext(AuthContext)
 
     const formatDate = (date) =>{
         const dateTimeArray = date.split('T');
@@ -11,24 +19,70 @@ export default function Post(props) {
         return `${dateOfficial[2]}/${dateOfficial[1]}/${dateOfficial[0]} - ${timeOfficial}:`
     }
 
+    const LikePost = async () =>{
+        const token = await AsyncStorage.getItem('auth_token');
+        fetch('http://159.65.165.71:8000/posts/like/' + props.post._id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                setLiked(true)
+                setPost(res)
+            })
+    }
+
+    const DislikePost = async () =>{
+        const token = await AsyncStorage.getItem('auth_token');
+        fetch('http://159.65.165.71:8000/posts/dislike/' + props.post._id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                setLiked(false)
+                setPost(res)
+            })
+    }
+
+    const CheckIfExistsInLiked = () => {
+        if(post){
+            return post.likes.indexOf(state.user) > -1
+
+        }else{
+            return props.post.likes.indexOf(state.user) > -1
+
+        }
+    }
 
     return (
-        <View>
+        <View style={styles.container}>
+            <View style={{width: 150}}>
             <Text style={{color: 'black', fontSize: 12}}>{props.post.user.name}</Text>
-            <Text style={{fontSize: 10, color: 'gray', marginBottom: 5}}>{formatDate(props.post.createdAt)}</Text>
+            <Text style={{fontSize: 10, color: 'gray'}}>{formatDate(props.post.createdAt)}</Text>
             <Text style={{fontSize: 18, color: 'black', marginBottom: 2}}>{props.post.text}</Text>
-            <Text style={{fontSize: 12, color: 'black', marginBottom: 20}}>Likes: {props.post.likes}</Text>
+            <Text style={{fontSize: 10, color: 'black'}}>{!post ? props.post.likes.length : post.likes.length} hearts</Text>
+            </View>
+            <View style={{width: 20}}>
+                {isLiked || CheckIfExistsInLiked() ? <Icon onPress={() => DislikePost()} name="heart" size={20} color="#900" />: <Icon onPress={() => LikePost()} name="heart-outline" size={20} color="#900" />}
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
+        backgroundColor: '#F1F2EB',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 5,
         display: 'flex',
-        justifyContent: 'flex-start',
-        paddingTop: 50
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 })
