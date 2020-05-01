@@ -94,9 +94,9 @@ const NewsFeedStackScreen = ({navigation}) => (
 
 const TabsScreen = () => (
     <Tabs.Navigator>
-        <Tabs.Screen name="Home" component={HomeStackScreen} />
-        <Tabs.Screen name="Link" component={LinkStackScreen} />
         <Tabs.Screen name="News feed" component={NewsFeedStackScreen} />
+        <Tabs.Screen name="Profile" component={HomeStackScreen} />
+        <Tabs.Screen name="Chat" component={LinkStackScreen} />
     </Tabs.Navigator>
 );
 
