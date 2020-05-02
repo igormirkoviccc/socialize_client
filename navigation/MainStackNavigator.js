@@ -14,6 +14,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import {navigationRef} from "./RootNavigation";
 import NewPostScreen from "../screens/NewPostScreen";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const RootStack = createStackNavigator();
@@ -102,9 +103,26 @@ const NewsFeedStackScreen = ({navigation}) => (
 
 const TabsScreen = () => (
     <Tabs.Navigator>
-        <Tabs.Screen name="News feed" component={NewsFeedStackScreen} />
-        <Tabs.Screen name="Profile" component={ProfileScreen} />
-        <Tabs.Screen name="Chat" component={LinkStackScreen} />
+        <Tabs.Screen name="News feed"
+                     options={{
+                         tabBarIcon: () =>
+                             <Icon name='newspaper' color='black' size={20}/>
+                     }}
+                     component={NewsFeedStackScreen} />
+        <Tabs.Screen
+            name="Profile"
+            options={{
+                tabBarIcon: () =>
+                    <Icon name='face-profile' color='black' size={20}/>
+            }}
+            component={ProfileScreen} />
+        <Tabs.Screen
+            name="Chat"
+            options={{
+                tabBarIcon: () =>
+                    <Icon name='chat' color='black' size={20}/>
+            }}
+            component={LinkStackScreen} />
     </Tabs.Navigator>
 );
 
@@ -124,7 +142,6 @@ export default function RootStackNavigator() {
     useEffect(async () => {
          await GetFromAsyncStorage();
          setLoading(false);
-         console.log(state.user);
 
     }, [])
 

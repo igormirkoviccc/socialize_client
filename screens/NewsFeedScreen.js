@@ -30,7 +30,7 @@ export default function NewsFeedScreen({navigation}) {
     const renderContent = () =>{
         if(posts){
             return posts.map((post, index) =>{
-                return <Post key={"_" + index} post={post}/>
+                return <Post key={"_" + Math.random()} post={post}/>
             })
         }
     }
