@@ -20,7 +20,7 @@ export default function Message(props) {
     return (
         <View style={styles.container}>
             <View style={{width: '100%'}}>
-                <Text style={{color: 'black', fontSize: 12}}>{props.message.userAccepter.name}</Text>
+                <Text style={{color: 'black', fontSize: 12}}>{props.message.userSender.name}</Text>
                 <Text style={{fontSize: 10, color: 'gray'}}>{formatDate(props.message.createdAt)}</Text>
                 <Text style={{fontSize: 18, color: 'black', marginBottom: 2}}>{props.message.text}</Text>
             </View>

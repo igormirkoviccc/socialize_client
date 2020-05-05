@@ -20,8 +20,6 @@ export default function ChatScreen({navigation, route}) {
 
     }, [navigation])
 
-    console.log(messages);
-
     const sendMessage = async () => {
         const messageObj = {
             text: message,
