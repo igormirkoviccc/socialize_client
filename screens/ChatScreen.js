@@ -77,7 +77,7 @@ export default function ChatScreen({navigation, route}) {
             </ScrollView>
             <View style={{borderWidth: 1, borderColor: '#F1F2EB', marginTop: 50}}>
                 <TextInput onChangeText={(text) => setMessage(text)}
-                           value={message} multiline={true} numberOfLines={8} style={styles.textInputContainer}/>
+                           value={message} style={styles.textInputContainer}/>
             </View>
             <View style={styles.actionContainer}>
                 <Button onPress={() => setMessage('')} type='outline' buttonStyle={{marginLeft: 10, color: 'red'}} title='Cancel'/>
