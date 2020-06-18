@@ -17,6 +17,7 @@ import NewPostScreen from "../screens/NewPostScreen";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ExploreScreen from "../screens/ExploreScreen";
 import ChatScreen from "../screens/ChatScreen";
+import {color} from "react-native-reanimated";
 
 
 const RootStack = createStackNavigator();
@@ -91,10 +92,11 @@ const NewsFeedStackScreen = ({navigation}) => (
                                           type='outline'
                                           title="Add post"
                                           color="#000"
-                                          buttonStyle={{height: 30, marginRight: 10}}
-                                          titleStyle={{fontSize: 12}}
+                                          buttonStyle={{height: 40, marginRight: 40,width:150,}}
+                                          titleStyle={{fontSize: 14}}
                                       />
                                   ),
+                                  headerTintColor:"#4a676c",
                               }} component={NewsFeedScreen}/>
         <NewsFeedStack.Screen name="Profile" component={ProfileScreen}/>
         <NewsFeedStack.Screen name="New Post" component={NewPostScreen}/>
@@ -105,11 +107,15 @@ const NewsFeedStackScreen = ({navigation}) => (
 );
 
 const TabsScreen = () => (
-    <Tabs.Navigator>
+    <Tabs.Navigator tabBarOptions={{
+
+        activeBackgroundColor: '#bbced1',
+    }}>
         <Tabs.Screen name="News feed"
                      options={{
                          tabBarIcon: () =>
                              <Icon name='newspaper' color='black' size={20}/>
+
                      }}
                      component={NewsFeedStackScreen}/>
         <Tabs.Screen
