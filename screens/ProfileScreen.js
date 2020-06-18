@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'white',
     padding: 30,
+    
   }
 })

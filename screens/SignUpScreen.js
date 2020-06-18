@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput } from "react-native";
 import { Button, Text } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
 
-export default function SignUpScreen() {
+export default function SignUpScreen({navigation}) {
   const {state, SignUp} = useContext(AuthContext)
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -12,21 +12,59 @@ export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [user, setUser] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+
+
+  const sendUser = async () => {
+      const userObj = {
+          name: name,
+          age: age,
+          gender: gender,
+          password: password,
+          email: email
+      }
+     
+      fetch('http://68.183.113.49:8000/signup', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+             
+          },
+          body: JSON.stringify(userObj)
+      })
+          .then((res) => {
+              if(res.ok){
+                console.log(res)
+                navigation.navigate('LogIn');
+                  console.log("SUCCESS");
+              }else{
+                  console.log(res);
+              }
+          })
+          .catch((e) => {
+              console.log(e)
+          })
+  }
+
+
   return (
     <View style={styles.container}>
       <Text>Name:</Text>
-      <TextInput style={styles.inputField} onChangeText={setName} />
+      <TextInput style={styles.inputField} onChangeText={(name) => setName(name)} />
       <Text>Age:</Text>
-      <TextInput style={styles.inputField} onChangeText={setAge} />
+      <TextInput style={styles.inputField} onChangeText={(age) => setAge(age)} />
       <Text>Gender:</Text>
-      <TextInput style={styles.inputField} onChangeText={setGender} />
+      <TextInput style={styles.inputField}
+       onChangeText={(gender) => setGender(gender)} />
       <Text>Username:</Text>
-      <TextInput style={styles.inputField} onChangeText={setUsername} />
+      <TextInput style={styles.inputField} onChangeText={(username) => setUsername(username)} />
       <Text>Email:</Text>
-      <TextInput style={styles.inputField} onChangeText={setEmail} />
+      <TextInput style={styles.inputField} onChangeText={(email) => setEmail(email)} />
       <Text>Password:</Text>
-      <TextInput style={styles.inputField} onChangeText={setPassword} />
-      <Button type="outline" title="Sign up" titleStyle={styles.buttonSignUp} onPress={() => SignUp({name, age, gender, username, email, password})}/>
+      <TextInput style={styles.inputField} onChangeText={(password) => setPassword(password)} />
+      <Button type="outline" title="Sign up" titleStyle={styles.buttonSignUp} onPress={() => sendUser({name, age, gender, username, email, password})}/>
 
       {/* zasto ovde ne radi style za Text */}
     </View>
