@@ -14,7 +14,7 @@ const AuthReducer = (state, action) => {
 
 
 const LogIn = ( dispatch ) => ({ email, password }) => {
-            fetch('http://159.65.165.71:8000/login', {
+            fetch('http://68.183.113.49:8000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const SignUp = (dispatch) => ({
   email,
   password,
 }) => {
-  fetch("http://159.65.165.71:8000/signup", {
+  fetch("http://68.183.113.49:8000/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

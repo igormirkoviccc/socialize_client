@@ -18,7 +18,7 @@ export default function NewsFeedScreen({navigation}) {
 
     const fetchPosts = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
-        fetch('http://159.65.165.71:8000/posts', {
+        fetch('http://68.183.113.49:8000/posts', {
             headers: {
                 "Authorization": token
             }

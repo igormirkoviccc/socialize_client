@@ -21,7 +21,7 @@ export default function Post(props) {
 
     const LikePost = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
-        fetch('http://159.65.165.71:8000/posts/like/' + props.post._id, {
+        fetch('http://68.183.113.49:8000/posts/like/' + props.post._id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization' : token
@@ -36,7 +36,7 @@ export default function Post(props) {
 
     const DislikePost = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
-        fetch('http://159.65.165.71:8000/posts/dislike/' + props.post._id, {
+        fetch('http://68.183.113.49:8000/posts/dislike/' + props.post._id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization' : token

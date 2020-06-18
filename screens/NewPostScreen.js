@@ -9,7 +9,7 @@ export default function NewsFeedScreen({navigation}) {
 
     const sendPostRequest = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
-        fetch('http://159.65.165.71:8000/posts/new', {
+        fetch('http://68.183.113.49:8000/posts/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,6 @@ export default function NewsFeedScreen({navigation}) {
                 numberOfLines={8}
                 onChangeText={(text) => setPostText(text)}
                 value={postText}/>
-
                 <View style={styles.actionContainer}>
                     <Button onPress={() => setPostText('')} type='outline' buttonStyle={{marginLeft: 10, color: 'red'}} title='Cancel'/>
                     <Button onPress={() => sendPostRequest()} type='outline' title='Apply'/>

@@ -26,7 +26,7 @@ export default function ChatScreen({navigation, route}) {
             user: user._id
         }
         const token = await AsyncStorage.getItem('auth_token');
-        fetch('http://159.65.165.71:8000/messages/new', {
+        fetch('http://68.183.113.49:8000/messages/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function ChatScreen({navigation, route}) {
     const getMessages = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
         setInterval( () =>{
-            fetch('http://159.65.165.71:8000/messages/' +user._id, {
+            fetch('http://68.183.113.49:8000/messages/' +user._id, {
                 headers: {
                     'Authorization' : token
                 }})
