@@ -40,8 +40,8 @@ export default function NewsFeedScreen({navigation}) {
                 onChangeText={(text) => setPostText(text)}
                 value={postText}/>
                 <View style={styles.actionContainer}>
-                    <Button onPress={() => setPostText('')} type='outline' buttonStyle={{marginLeft: 10, color: 'red'}} title='Cancel'/>
-                    <Button onPress={() => sendPostRequest()} type='outline' title='Apply'/>
+                    <Button onPress={() => setPostText('')} type='outline'  buttonStyle={{marginLeft: 10, color: "red", backgroundColor:"white"}} title='Cancel'/>
+                    <Button onPress={() => sendPostRequest()} type='outline' containerStyle={[{ backgroundColor: 'white' }]} title='Apply'/>
                 </View>
 
         </ScrollView>

@@ -57,11 +57,11 @@ export default function NewsFeedScreen({navigation}) {
 
             elevation: 5}}>
 
-            <Text>Name: {user.name}</Text>
+            <Text> Name: {user.name}</Text>
             <Text>Email:  {user.email}</Text>
             <Text>Age:  {user.age}</Text>
             <Text>Gender:  {user.gender}</Text>
-            <Text style={{marginTop: 30, fontSize: 20, fontWeight:"bold"}}>Posts: </Text>
+            <Text style={{marginTop: 30, fontSize: 20, fontWeight:"bold",color:"#4a676c"}}>Posts: </Text>
             {renderPosts()}
 
           </View>

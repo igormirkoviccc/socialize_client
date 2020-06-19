@@ -61,7 +61,7 @@ const ProfileStackScreen = ({navigation}) => {
                             title="LogOut"
                             color="#000"
                             buttonStyle={{height: 30, marginRight: 10}}
-                            titleStyle={{fontSize: 12}}
+                            titleStyle={{fontSize: 12,color:"#4a676c"}}
                         />
                     ),
                 }}
@@ -76,7 +76,7 @@ const ProfileStackScreen = ({navigation}) => {
 
 const ExploreStackScreen = () => (
     <ExploreStack.Navigator>
-        <ExploreStack.Screen name="Explore" component={ExploreScreen}/>
+        <ExploreStack.Screen name="Explore" options={{headerTintColor:"#4a676c"}} component={ExploreScreen}/>
         <ExploreStack.Screen name="News feed" component={NewsFeedScreen}/>
         <ExploreStack.Screen name="Profile" component={ProfileScreen}/>
     </ExploreStack.Navigator>
@@ -114,22 +114,21 @@ const TabsScreen = () => (
         <Tabs.Screen name="News feed"
                      options={{
                          tabBarIcon: () =>
-                             <Icon name='newspaper' color='black' size={20}/>
-
+                             <Icon name='newspaper' color="#4a676c" size={30}/>
                      }}
                      component={NewsFeedStackScreen}/>
         <Tabs.Screen
             name="Profile"
             options={{
                 tabBarIcon: () =>
-                    <Icon name='face-profile' color='black' size={20}/>
+                    <Icon name='face-profile' color="#4a676c" size={30}/>
             }}
             component={ProfileScreen}/>
         <Tabs.Screen
             name="Explore"
             options={{
                 tabBarIcon: () =>
-                    <Icon name='magnify' color='black' size={20}/>
+                    <Icon name='magnify' color="#4a676c" size={30}/>
             }}
             component={ExploreStackScreen}/>
     </Tabs.Navigator>
