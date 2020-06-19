@@ -51,19 +51,18 @@ export default function SignUpScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Name:</Text>
-      <TextInput style={styles.inputField} onChangeText={(name) => setName(name)} />
-      <Text>Age:</Text>
-      <TextInput style={styles.inputField} onChangeText={(age) => setAge(age)} />
-      <Text>Gender:</Text>
-      <TextInput style={styles.inputField}
-       onChangeText={(gender) => setGender(gender)} />
-      <Text>Username:</Text>
-      <TextInput style={styles.inputField} onChangeText={(username) => setUsername(username)} />
-      <Text>Email:</Text>
-      <TextInput style={styles.inputField} onChangeText={(email) => setEmail(email)} />
-      <Text>Password:</Text>
-      <TextInput style={styles.inputField} onChangeText={(password) => setPassword(password)} />
+      <Text style={styles.label}>Name:</Text>
+      <TextInput style={styles.inputField} onChangeText={setName} />
+      <Text style={styles.label}>Age:</Text>
+      <TextInput style={styles.inputField} onChangeText={setAge} />
+      <Text style={styles.label}>Gender:</Text>
+      <TextInput style={styles.inputField} onChangeText={setGender} />
+      <Text style={styles.label}>Username:</Text>
+      <TextInput style={styles.inputField} onChangeText={setUsername} />
+      <Text style={styles.label}>Email:</Text>
+      <TextInput style={styles.inputField} onChangeText={setEmail} />
+      <Text style={styles.label}>Password:</Text>
+      <TextInput style={styles.inputField} onChangeText={setPassword} />
       <Button type="outline" title="Sign up" titleStyle={styles.buttonSignUp} onPress={() => sendUser({name, age, gender, username, email, password})}/>
 
       {/* zasto ovde ne radi style za Text */}
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#F5CCE8",
+    backgroundColor: '#4a676c',
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
@@ -83,11 +82,14 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: "60%",
-    backgroundColor: "#ffe6e6",
+    backgroundColor: "#bbced1",
     margin: 10,
     borderRadius: 5,
   },
   buttonSignUp: {
-    color: "#6B2D5C",
+    color: "#bbced1",
+  },
+  label:{
+    color:'#bbced1'
   },
 });
