@@ -73,7 +73,7 @@ export default function SignUpScreen({ navigation }) {
       <Text style={{color:"white", fontWeight:"bold"}}>Email:</Text>
       <TextInput style={styles.inputField} onChangeText={setEmail} />
       <Text style={{color:"white", fontWeight:"bold"}}>Password:</Text>
-      <TextInput style={styles.inputField} onChangeText={setPassword} />
+      <TextInput style={styles.inputField} onChangeText={setPassword} secureTextEntry={true}      />
       <Button type="outline" title="Sign up"  buttonStyle={styles.buttonSignUp} titleStyle={{
           fontSize: 12,
           fontWeight: "bold",
@@ -99,13 +99,12 @@ const styles = StyleSheet.create({
     width: "30%",
     margin: 10,
       marginBottom: 20,
-      paddingTop: 4,
+      lineHeight: 30,
       paddingLeft: 10,
       height: 30,
       borderWidth: 1,
       textAlignVertical: 'center',
       borderColor: '#F1F2EB',
-      padding: 20,
       borderRadius: 5,
       backgroundColor: "#bbced1",
       shadowColor: "#000",

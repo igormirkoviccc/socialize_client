@@ -59,7 +59,7 @@ export default function ChatScreen({navigation, route}) {
                 }})
                 .then(res => res.json())
                 .then(res => setMessages(res))
-        }, 3000)
+        }, 2000)
     }
 
     const renderMessages = () =>{
