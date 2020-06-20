@@ -56,13 +56,16 @@ export default function NewsFeedScreen({navigation}) {
             padding:30,
 
             elevation: 5}}>
-
-            <Text> Name: {user.name}</Text>
-            <Text>Email:  {user.email}</Text>
-            <Text>Age:  {user.age}</Text>
-            <Text>Gender:  {user.gender}</Text>
-            <Text style={{marginTop: 30, fontSize: 20, fontWeight:"bold",color:"#4a676c"}}>Posts: </Text>
+            <Text style={{fontSize: 20, fontWeight:"bold",color:"#4a676c",marginBottom:10}}>User Info: </Text>
+          <View style={{ backgroundColor:"#a1b8bb",padding:10, borderStyle:"solid"}}>
+            <Text style={{height:30}}><text style={{fontWeight:"bold" }}>Name:     </text>{user.name}</Text>
+            <Text style={{height:30}}><text style={{fontWeight:"bold"}}>Email:     </text>{user.email}</Text>
+            <Text style={{height:30}}><text style={{fontWeight:"bold"}}>Age:        </text>{user.age}</Text>
+            <Text style={{height:30}}><text style={{fontWeight:"bold"}}>Gender:  </text>{user.gender}</Text>
+          </View>
+            <Text style={{marginTop: 30, fontSize: 20, fontWeight:"bold",color:"#4a676c",marginBottom:10}}>Posts: </Text>
             {renderPosts()}
+
 
           </View>
       </ScrollView>

@@ -38,7 +38,7 @@ const AuthStackScreen = () => (
         <AuthStack.Screen
             name="LogIn"
             component={LogInScreen}
-            options={{title: "Log in"}}
+            options={{title: "Log in", headerTintColor:"#4a676c"}}
         />
         <AuthStack.Screen
             name="SignUp"
