@@ -70,7 +70,6 @@ const ProfileStackScreen = ({navigation}) => {
             <ProfileStack.Screen name="News feed" component={NewsFeedScreen}/>
             <ProfileStack.Screen name="Explore" component={ExploreScreen}/>
             <ProfileStack.Screen name="New Post" component={NewPostScreen}/>
-            <NewsFeedStack.Screen name="Log in" component={LogInScreen}/>
 
         </ProfileStack.Navigator>
     );
