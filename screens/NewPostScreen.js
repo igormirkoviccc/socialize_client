@@ -34,7 +34,7 @@ export default function NewsFeedScreen({navigation}) {
         <ScrollView style={styles.container}>
             <TextInput
                 multiline={true}
-                style={{borderWidth: 1, textAlignVertical: 'top', borderColor: '#F1F2EB', padding: 10, borderRadius: 5, backgroundColor:"#bbced1"
+                style={{borderWidth: 1, textAlignVertical: 'top', borderColor: '#F1F2EB', padding: 10, borderRadius: 5, backgroundColor:"#bbced1",
                 }}
                 numberOfLines={8}
                 onChangeText={(text) => setPostText(text)}

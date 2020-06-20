@@ -43,7 +43,7 @@ const AuthStackScreen = () => (
         <AuthStack.Screen
             name="SignUp"
             component={SignUpScreen}
-            options={{title: "Sign up"}}
+            options={{title: "Sign up",headerTintColor:"#4a676c"}}
         />
     </AuthStack.Navigator>
 );
@@ -99,9 +99,9 @@ const NewsFeedStackScreen = ({navigation}) => (
                                   headerTintColor:"#4a676c",
                               }} component={NewsFeedScreen}/>
         <NewsFeedStack.Screen name="Profile" component={ProfileScreen}/>
-        <NewsFeedStack.Screen name="New Post" component={NewPostScreen}/>
+        <NewsFeedStack.Screen name="New Post" options={{headerTintColor:"#4a676c"}} component={NewPostScreen}/>
         <NewsFeedStack.Screen name="Explore" component={ExploreScreen}/>
-        <NewsFeedStack.Screen name="Chat Screen" component={ChatScreen}/>
+        <NewsFeedStack.Screen name="Chat Screen" options={{headerTintColor:"#4a676c"}} component={ChatScreen}/>
 
     </NewsFeedStack.Navigator>
 );
