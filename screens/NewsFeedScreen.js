@@ -8,7 +8,7 @@ import Button from "react-native-web/dist/exports/Button";
 export default function NewsFeedScreen({navigation}) {
     const {state, LogIn} = useContext(AuthContext)
     const [posts, setPosts] = useState([]);
-
+    const [id, setId] = useState('');
 
     useEffect( () =>{
         return navigation.addListener('focus', () => {
@@ -20,6 +20,9 @@ export default function NewsFeedScreen({navigation}) {
 
     const fetchPosts = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
+        const id = await AsyncStorage.getItem('id');
+        console.log(id);
+        setId(id);
         fetch('http://68.183.113.49:8000/posts', {
             headers: {
                 "Authorization": token
@@ -32,7 +35,7 @@ export default function NewsFeedScreen({navigation}) {
     const renderContent = () =>{
         if(posts){
             return posts.map((post, index) =>{
-                return <Post key={"_" + Math.random()} post={post}/>
+                return <Post key={"_" + Math.random()} userId={id} post={post}/>
             })
         }
     }

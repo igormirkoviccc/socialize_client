@@ -8,7 +8,10 @@ import {Context as AuthContext} from "../context/AuthContext";
 
 
 export default function Post(props) {
-    const [isLiked, setLiked] = useState(false)
+    console.log(props.post.likes)
+    console.log(props.userId)
+
+    const [isLiked, setLiked] = useState(!!props.post.likes.find((like) => like == props.userId))
     const [post, setPost] = useState();
     const { state } = useContext(AuthContext)
 

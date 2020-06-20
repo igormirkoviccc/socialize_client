@@ -78,9 +78,11 @@ export default function SignUpScreen({ navigation }) {
           fontSize: 12,
           fontWeight: "bold",
 
-      }}onPress={() => SignUp({name, age, gender, username, email, password})}/>
-
-      {/* zasto ovde ne radi style za Text */}
+      }}
+              onPress={() => sendUser({name, age, gender, username, email, password})}/>
+        {error &&
+            <Text style={{color: 'red'}}>{error}</Text>
+        }
     </View>
   );
 }
