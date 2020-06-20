@@ -12,6 +12,7 @@ export default function NewsFeedScreen({navigation}) {
   useEffect( () =>{
     return navigation.addListener('focus', () => {
       fetchUserData();
+      clearInterval(global.interval)
     });
 
   }, [navigation])
