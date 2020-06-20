@@ -12,6 +12,7 @@ export default function ExploreScreen({navigation}) {
 
     if(navigationChange){
         navigation.navigate('Chat Screen', {user: navigationChange});
+        onNavigationChange('');
     }
 
     useEffect( () =>{

@@ -19,6 +19,8 @@ import ExploreScreen from "../screens/ExploreScreen";
 import ChatScreen from "../screens/ChatScreen";
 
 
+
+
 const RootStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
@@ -68,6 +70,7 @@ const ProfileStackScreen = ({navigation}) => {
             <ProfileStack.Screen name="News feed" component={NewsFeedScreen}/>
             <ProfileStack.Screen name="Explore" component={ExploreScreen}/>
             <ProfileStack.Screen name="New Post" component={NewPostScreen}/>
+            <NewsFeedStack.Screen name="Log in" component={LogInScreen}/>
 
         </ProfileStack.Navigator>
     );
@@ -81,28 +84,47 @@ const ExploreStackScreen = () => (
     </ExploreStack.Navigator>
 );
 
-const NewsFeedStackScreen = ({navigation}) => (
-    <NewsFeedStack.Navigator>
-        <NewsFeedStack.Screen name="News feed"
-                              options={{
-                                  headerRight: () => (
-                                      <Button
-                                          onPress={() => navigation.navigate('New Post')}
-                                          type='outline'
-                                          title="Add post"
-                                          color="#000"
-                                          buttonStyle={{height: 30, marginRight: 10}}
-                                          titleStyle={{fontSize: 12}}
-                                      />
-                                  ),
-                              }} component={NewsFeedScreen}/>
-        <NewsFeedStack.Screen name="Profile" component={ProfileScreen}/>
-        <NewsFeedStack.Screen name="New Post" component={NewPostScreen}/>
-        <NewsFeedStack.Screen name="Explore" component={ExploreScreen}/>
-        <NewsFeedStack.Screen name="Chat Screen" component={ChatScreen}/>
+const NewsFeedStackScreen = ({navigation}) => {
+    const {LogOut} = useContext(AuthContext)
 
-    </NewsFeedStack.Navigator>
-);
+    return(
+        <NewsFeedStack.Navigator>
+            <NewsFeedStack.Screen name="News feed"
+                                  options={{
+                                      headerRight: () => (
+                                          <View style={{width: 200, flexDirection: 'row'}}>
+                                              <Button
+                                                  onPress={() => navigation.navigate('New Post')}
+                                                  type='outline'
+                                                  title="Add post"
+                                                  color="#000"
+                                                  buttonStyle={{height: 30, marginRight: 10, width: 75}}
+                                                  titleStyle={{fontSize: 12}}
+                                              />
+                                              <Button
+                                                  onPress={async () => {
+                                                      await AsyncStorage.removeItem('auth_token');
+                                                      await AsyncStorage.removeItem('id');
+                                                      window.location.reload(false);
+                                                  }}
+                                                  type='outline'
+                                                  title="Log out"
+                                                  color="#000"
+                                                  buttonStyle={{height: 30, marginRight: 10, width: 75}}
+                                                  titleStyle={{fontSize: 12}}
+                                              />
+                                          </View>
+                                      ),
+                                  }} component={NewsFeedScreen}/>
+            <NewsFeedStack.Screen name="Profile" component={ProfileScreen}/>
+            <NewsFeedStack.Screen name="New Post" component={NewPostScreen}/>
+            <NewsFeedStack.Screen name="Explore" component={ExploreScreen}/>
+            <NewsFeedStack.Screen name="Chat Screen" component={ChatScreen}/>
+
+        </NewsFeedStack.Navigator>
+    )
+}
+
 
 const TabsScreen = () => (
     <Tabs.Navigator>
