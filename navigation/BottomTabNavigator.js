@@ -21,6 +21,7 @@ export default function BottomTabNavigator() {
         options={{
           title: 'Get Started',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+
         }}
       />
       <BottomTab.Screen

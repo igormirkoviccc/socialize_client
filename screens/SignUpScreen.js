@@ -17,7 +17,7 @@ export default function SignUpScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState();
 
-  
+
 
   const sendUser = async () => {
     const userObj = {
@@ -37,7 +37,7 @@ export default function SignUpScreen({ navigation }) {
       .then(async (res) => {
         if (res.status == 400) {
           return res.json();
-          
+
         }
         if (res.ok) {
           console.log(res);
@@ -62,28 +62,24 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Name:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Name:</Text>
       <TextInput style={styles.inputField} onChangeText={setName} />
-      <Text style={styles.label}>Age:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Age:</Text>
       <TextInput style={styles.inputField} onChangeText={setAge} />
-      <Text style={styles.label}>Gender:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Gender:</Text>
       <TextInput style={styles.inputField} onChangeText={setGender} />
-      <Text style={styles.label}>Username:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Username:</Text>
       <TextInput style={styles.inputField} onChangeText={setUsername} />
-      <Text style={styles.label}>Email:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Email:</Text>
       <TextInput style={styles.inputField} onChangeText={setEmail} />
-      <Text style={styles.label}>Password:</Text>
+      <Text style={{color:"white", fontWeight:"bold"}}>Password:</Text>
       <TextInput style={styles.inputField} onChangeText={setPassword} />
-      <Button
-        type="outline"
-        title="Sign up"
-        titleStyle={[styles.buttonSignUp]}
-        onPress={() => sendUser({ name, age, gender, username, email, password })}
-      />
-      {error ? (
-        <Text style={{color: 'red',
-        fontSize: 10}}>{error}</Text>
-      ) : null}
+      <Button type="outline" title="Sign up"  buttonStyle={styles.buttonSignUp} titleStyle={{
+          fontSize: 12,
+          fontWeight: "bold",
+
+      }}onPress={() => SignUp({name, age, gender, username, email, password})}/>
+
       {/* zasto ovde ne radi style za Text */}
     </View>
   );
@@ -100,31 +96,32 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   inputField: {
-    borderColor: "#F1F2EB",
-    width: "60%",
-    backgroundColor: "#bbced1",
+    width: "30%",
     margin: 10,
-    borderRadius: 5,
-    borderRadius: 5,
-    backgroundColor: "#bbced1",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
+      marginBottom: 20,
+      paddingTop: 4,
+      paddingLeft: 10,
+      height: 30,
+      borderWidth: 1,
+      textAlignVertical: 'center',
+      borderColor: '#F1F2EB',
+      padding: 20,
+      borderRadius: 5,
+      backgroundColor: "#bbced1",
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 12,
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16.00,
 
-    elevation: 24,
+      elevation: 24,
+      marginTop:10,
   },
   buttonSignUp: {
-    width: 70,
-    height: 50,
-    backgroundColor: "#132c30",
-    fontWeight: "bold",
-    fontSize: 12,
-  },
-  label: {
-    color: "#bbced1",
-  },
+      backgroundColor: '#132c30',
+
+
+}
 });

@@ -34,14 +34,14 @@ export default function NewsFeedScreen({navigation}) {
         <ScrollView style={styles.container}>
             <TextInput
                 multiline={true}
-                style={{borderWidth: 1, textAlignVertical: 'top', borderColor: '#F1F2EB', padding: 10, borderRadius: 5
+                style={{borderWidth: 1, textAlignVertical: 'top', borderColor: '#F1F2EB', padding: 10, borderRadius: 5, backgroundColor:"#bbced1",
                 }}
                 numberOfLines={8}
                 onChangeText={(text) => setPostText(text)}
                 value={postText}/>
                 <View style={styles.actionContainer}>
-                    <Button onPress={() => setPostText('')} type='outline' buttonStyle={{marginLeft: 10, color: 'red'}} title='Cancel'/>
-                    <Button onPress={() => sendPostRequest()} type='outline' title='Apply'/>
+                    <Button onPress={() => setPostText('')} type='outline'  buttonStyle={{marginLeft: 10, color: "red", backgroundColor:"white"}} title='Cancel'/>
+                    <Button onPress={() => sendPostRequest()} type='outline' containerStyle={[{ backgroundColor: 'white' }]} title='Apply'/>
                 </View>
 
         </ScrollView>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: 'white',
+        backgroundColor: '#4a676c',
         padding: 30
     },
     actionContainer:{
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        flexDirection: 'row-reverse'
+        flexDirection: 'row-reverse',
+
     }
 })
