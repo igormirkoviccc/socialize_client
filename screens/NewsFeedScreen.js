@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {AsyncStorage, ScrollView, StyleSheet} from 'react-native';
 import Post from '../components/Post'
 import {Context as AuthContext} from "../context/AuthContext";
+import Button from "react-native-web/dist/exports/Button";
 
 
 export default function NewsFeedScreen({navigation}) {
@@ -12,6 +13,7 @@ export default function NewsFeedScreen({navigation}) {
     useEffect( () =>{
         return navigation.addListener('focus', () => {
             fetchPosts();
+            clearInterval(global.interval)
         });
 
     }, [navigation])

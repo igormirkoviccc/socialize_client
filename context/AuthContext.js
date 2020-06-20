@@ -7,6 +7,8 @@ const AuthReducer = (state, action) => {
       return { ...state, errorMessage: action.payload, isOk:true };
     case "login":
       return { errorMessage: "", isAuth: true };
+      case "logout":
+          return {errorMessage: "", isAuth: false}
     default:
       return state;
   }
@@ -29,7 +31,6 @@ const LogIn = ( dispatch ) => ({ email, password }) => {
                     }
                 })
                 .then(async (res) => {
-                    console.log(res);
                     await AsyncStorage.setItem('auth_token', res.token.toString());
                     await AsyncStorage.setItem('id', res.id.toString());
                     dispatch({type: 'login', payload: res.toString()})
@@ -70,9 +71,14 @@ const SignUp = (dispatch) => ({
     });
 };
 
+const LogOut = (dispatch) => () => {
+  dispatch({type: "logout"})
+};
+
+
 export const { Provider, Context } = DataContext(
   AuthReducer,
-  { LogIn },
+  { LogIn, LogOut },
   { SignUp },
   { isAuth: false, errorMessage: "" }
 );

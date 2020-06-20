@@ -13,10 +13,13 @@ export default function ChatScreen({navigation, route}) {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
 
+    let interval = {};
+
     useEffect( () =>{
          return navigation.addListener('focus', () => {
             getMessages();
-        });
+
+         });
 
     }, [navigation])
 
@@ -49,14 +52,14 @@ export default function ChatScreen({navigation, route}) {
 
     const getMessages = async () =>{
         const token = await AsyncStorage.getItem('auth_token');
-        setInterval( () =>{
+        global.interval = setInterval( () =>{
             fetch('http://68.183.113.49:8000/messages/' +user._id, {
                 headers: {
                     'Authorization' : token
                 }})
                 .then(res => res.json())
                 .then(res => setMessages(res))
-        }, 1000)
+        }, 3000)
     }
 
     const renderMessages = () =>{
