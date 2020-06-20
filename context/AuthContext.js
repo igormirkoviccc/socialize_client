@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case "error":
-      return { ...state, errorMessage: action.payload };
+      return { ...state, errorMessage: action.payload, isOk:true };
     case "login":
       return { errorMessage: "", isAuth: true };
     default:
@@ -56,7 +56,7 @@ const SignUp = (dispatch) => ({
   })
     .then((res) => {
       if (res.ok) {
-        return res.text();
+        return res.json();
       } else {
         dispatch({ type: "error", payload: "Sign up error" });
       }
